@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Team(models.Model):
     name = models.CharField(max_length=100, help_text='Enter your team name')
@@ -10,4 +11,13 @@ class Team(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('team-detail-view', args=[str(self.id)])
+        return reverse('team-detail', args=[str(self.id)])
+
+    def get_members(self):
+        members = [self.member1]
+        if self.member2:
+            members.append(self.member2)
+            if self.member3:
+                members.append(self.member3)
+
+        return members

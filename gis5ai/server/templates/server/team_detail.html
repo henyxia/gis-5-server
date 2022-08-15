@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Team number {{ team.id }}</h1>
+
+  <p><strong>Team name:</strong> {{ team.name }}</p>
+  <p><strong>Members:</strong> {{ team.get_members|join:", " }}</p>
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Challenges</h4>
+  </div>
+{% endblock %}
