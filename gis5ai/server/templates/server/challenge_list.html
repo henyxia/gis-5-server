@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Challenge List</h1>
+  {% if challenge_list %}
+  <table>
+      <thead>
+          <th>Name</th>
+          <th>Priority</th>
+          <th>Validator</th>
+          <th>Completion</th>
+      </thead>
+    {% for chall in challenge_list %}
+      <tr>
+          <td><a href="{{ chall.get_absolute_url }}">{{ chall.name }}</a></td>
+          <td>{{ chall.priority }}</td>
+          <td>{{ chall.validator }}</td>
+          <td>{{ chall.get_completion }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+    <p>There are no challenges, sadly.</p>
+  {% endif %}
+{% endblock %}

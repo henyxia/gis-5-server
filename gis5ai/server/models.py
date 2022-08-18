@@ -21,3 +21,17 @@ class Team(models.Model):
                 members.append(self.member3)
 
         return members
+
+class Challenge(models.Model):
+    name = models.CharField(max_length=100, help_text='Challenge name')
+    priority = models.PositiveIntegerField(help_text='Challenge priority')
+    validator = models.CharField(max_length=100, help_text='Name of the validator function')
+    description = models.TextField(help_text='Challenge description')
+
+    ordering = ['priority']
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('chall-detail', args=[str(self.id)])

@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% load markdown_extras %}
+
+{% block content %}
+<h1>{{ challenge.name }}</h1>
+<p><strong>Priority:</strong> {{ challenge.priority }}</p>
+<p><strong>Validator:</strong> {{ challenge.validator }}</p>
+
+<h2>Description</h2>
+<hr />
+<div>{{ challenge.description|markdown|safe }}</div>
+{% endblock %}

@@ -7,10 +7,12 @@
   <p>Stats of this instance:</p>
   <ul>
     <li><strong>Number of teams:</strong> {{ num_teams }}</li>
+    <li><strong>Number of challenges:</strong> {{ num_challs }}</li>
   </ul>
   <h2>Actions</h2>
   <p>List of triggerable actions<p>
   <ul>
     <li><a href="{% url 'team-create' %}">Create a team</li>
+    <li><a href="{% url 'chall-create' %}">Create a chall</li>
   </ul>
 {% endblock %}
