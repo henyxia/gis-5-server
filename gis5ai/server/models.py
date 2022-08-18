@@ -53,6 +53,25 @@ class Team(models.Model):
 
         return challs
 
+    def get_next_chall(self):
+        challs = self.get_challenges()
+
+        lowest_chall = None
+        for chall, inst in challs.items():
+            # if no instance, the challenge has not been started
+            if not inst:
+                if lowest_chall is None or lowest_chall.priority > chall.priority:
+                    lowest_chall = chall
+                continue
+            # if the instance is started, then return it
+            if inst.status == 's':
+                return chall.id
+
+        if lowest_chall is None:
+            return None
+
+        return lowest_chall.id
+
 class Challenge(models.Model):
     name = models.CharField(max_length=100, help_text='Challenge name')
     priority = models.PositiveIntegerField(help_text='Challenge priority')

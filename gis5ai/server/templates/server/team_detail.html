@@ -6,8 +6,19 @@
 <p><strong>Team name:</strong> {{ team.name }}</p>
 <p><strong>Members:</strong> {{ team.get_members|join:", " }}</p>
 
-<h4>Challenges</h4>
-<hr />
+<h3>Work</h3>
+
+{% with next_chall=team.get_next_chall %}
+{% if next_chall %}
+<a href="{% url 'chall-start' chall_id=team.get_next_chall team_id=team.id %}">Let's go!</a>
+{% else %}
+<h5>All challenges completed, congratulations!</h5>
+{% endif %}
+{% endwith %}
+<br />
+<br />
+
+<h3>Challenges</h3>
 
 {% if challs %}
 <table class="table">
