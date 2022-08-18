@@ -3,11 +3,28 @@
 {% load markdown_extras %}
 
 {% block content %}
-<h1>{{ challenge.name }}</h1>
-<p><strong>Priority:</strong> {{ challenge.priority }}</p>
-<p><strong>Validator:</strong> {{ challenge.validator }}</p>
+<h1>Challenge details</h1>
 
-<h2>Description</h2>
+<br/ >
+
+<table class="table">
+  <tr>
+    <th scope="row">Title</th>
+    <td>{{ challenge.name }}</td>
+  </tr>
+  <tr>
+    <th scope="row">Priority</th>
+    <td>{{ challenge.priority }}</td>
+  </tr>
+  <tr>
+    <th scope="row">Validator</th>
+    <td>{{ challenge.validator }}</td>
+  </tr>
+</table>
+
+<br/ >
+
+<h3>Description</h3>
 <hr />
 <div>{{ challenge.description|markdown|safe }}</div>
 {% endblock %}
