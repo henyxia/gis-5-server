@@ -9,5 +9,6 @@ urlpatterns = [
         path('challs/', views.ChallListView.as_view(), name='challs'),
         path('challs/<int:pk>', views.ChallDetailView.as_view(), name='chall-detail'),
         path('challs/create/', views.ChallCreate.as_view(), name='chall-create'),
-        path('challs/<int:chall_id>/start/team/<int:team_id>', views.ChallCreate.as_view(), name='chall-start'),
+        path('challs/<int:chall_id>/team/<int:team_id>/start', views.ChallStart, name='chall-start'),
+        path('challs/<int:chall_id>/team/<int:team_id>/work', views.ChallWork, name='chall-work'),
     ]

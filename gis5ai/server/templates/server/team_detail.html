@@ -8,12 +8,16 @@
 
 <h3>Work</h3>
 
+{% with current_chall=team.get_current_chall %}
 {% with next_chall=team.get_next_chall %}
-{% if next_chall %}
-<a href="{% url 'chall-start' chall_id=team.get_next_chall team_id=team.id %}">Let's go!</a>
+{% if current_chall %}
+<a href="{% url 'chall-work' chall_id=current_chall.id team_id=team.id %}">Resume challenge: {{ current_chall.name }}</a>
+{% elif next_chall %}
+<a href="{% url 'chall-start' chall_id=next_chall.id team_id=team.id %}">Start next challenge: {{ next_chall.name }}</a>
 {% else %}
 <h5>All challenges completed, congratulations!</h5>
 {% endif %}
+{% endwith %}
 {% endwith %}
 <br />
 <br />

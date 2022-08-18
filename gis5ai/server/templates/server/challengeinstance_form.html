@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Start a new challenge</h1>
+
+<br/ >
+
+<h3>Hello team {{ team.name }}!</h3>
+<p>Your next tutorial will be <em>{{ chall.name }}</em>!</p>
+<p>Are you ready?</p>
+
+<form action="" method="post">
+  {% csrf_token %}
+  <input type="submit" value="Yes!!!">
+</form>
+{% endblock %}

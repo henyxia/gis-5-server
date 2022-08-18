@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.views import generic
 from django.views.generic.edit import CreateView
+from django import forms
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
-from .models import Team, Challenge
+from .models import Team, Challenge, ChallengeInstance
 
 def index(request):
     num_teams = Team.objects.all().count()
@@ -27,6 +30,35 @@ def TeamDetailView(request, pk):
     }
 
     return render(request, 'server/team_detail.html', context=context)
+
+def ChallStart(request, chall_id, team_id):
+    if request.method == 'POST':
+        form = forms.Form(request.POST)
+        if form.is_valid():
+            #inst = ChallengeInstance(challenge=form.cleaned_data['challenge'], team=form.cleaned_data['team'])
+            inst = ChallengeInstance(challenge_id=chall_id, team_id=team_id)
+            inst.save()
+
+            # redirect to a new URL:
+            return HttpResponseRedirect(reverse('chall-work', kwargs={'chall_id': chall_id, 'team_id': team_id}))
+
+    else:
+        chall = Challenge.objects.get(pk=chall_id)
+        team = Team.objects.get(pk=team_id)
+        context = {
+            'chall': chall,
+            'team': team,
+        }
+        return render(request, 'server/challengeinstance_form.html', context=context)
+
+def ChallWork(request, chall_id, team_id):
+    chall = Challenge.objects.get(pk=chall_id)
+    team = Team.objects.get(pk=team_id)
+    context = {
+        'chall': chall,
+        'team': team,
+    }
+    return render(request, 'server/challengeinstance_detail.html', context=context)
 
 class TeamListView(generic.ListView):
     model = Team

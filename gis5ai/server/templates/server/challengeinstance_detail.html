@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+
+{% load markdown_extras %}
+
+{% block content %}
+<table class="table">
+  <tr>
+    <th scope="row">Title</th>
+    <td>{{ chall.name }}</td>
+  </tr>
+  <tr>
+    <th scope="row">Priority</th>
+    <td>{{ chall.priority }}</td>
+  </tr>
+  <tr>
+    <th scope="row">Validator</th>
+    <td>{{ chall.validator }}</td>
+  </tr>
+</table>
+
+<br/ >
+
+<h1>Intro</h1>
+<p>Welcome team {{ team.name }}!</p>
+<p>Your mission, should you choose to accept it, is the following one:</p>
+<br/ >
+
+<h3>Description</h3>
+<hr />
+<div>{{ chall.description|markdown|safe }}</div>
+{% endblock %}
