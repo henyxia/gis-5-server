@@ -1,12 +1,39 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Team number {{ team.id }}</h1>
+<h1>Team number {{ team.id }}</h1>
 
-  <p><strong>Team name:</strong> {{ team.name }}</p>
-  <p><strong>Members:</strong> {{ team.get_members|join:", " }}</p>
+<p><strong>Team name:</strong> {{ team.name }}</p>
+<p><strong>Members:</strong> {{ team.get_members|join:", " }}</p>
 
-  <div style="margin-left:20px;margin-top:20px">
-    <h4>Challenges</h4>
-  </div>
+<h4>Challenges</h4>
+<hr />
+
+{% if challs %}
+<table class="table">
+  <thead>
+    <th>Name</th>
+    <th>Status</th>
+    <th>Started At</th>
+    <th>Completed At</th>
+  </thead>
+  {% for chall, instance in challs.items %}
+  <tr>
+    <td><a href="{{ chall.get_absolute_url }}">{{ chall.name }}</a></td>
+    <td class={% if instance %}{% if instance.status == 's' %}"table-primary"{% else %}"table-success"{% endif %}{% else %}"table-secondary"{% endif %}>
+      {% if instance %}
+      {{ instance.get_status_display }}
+      {% else %}
+      Not started yet
+      {% endif %}
+    </td>
+    <td>{{ instance.started_at }}</td>
+    <td>{{ instance.done_at }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+  <p>There are no challenges, sadly.</p>
+{% endif %}
+
 {% endblock %}

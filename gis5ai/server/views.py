@@ -15,6 +15,19 @@ def index(request):
 
     return render(request, 'index.html', context=context)
 
+def TeamDetailView(request, pk):
+    model = Team
+
+    team = Team.objects.get(pk=pk)
+    challs = team.get_challenges()
+
+    context = {
+        'team': team,
+        'challs': challs,
+    }
+
+    return render(request, 'server/team_detail.html', context=context)
+
 class TeamListView(generic.ListView):
     model = Team
     context_object_name = 'team_list'
@@ -23,9 +36,6 @@ class TeamListView(generic.ListView):
 class TeamCreate(CreateView):
     model = Team
     fields = ['name', 'member1', 'member2', 'member3']
-
-class TeamDetailView(generic.DetailView):
-    model = Team
 
 class ChallListView(generic.ListView):
     model = Challenge
