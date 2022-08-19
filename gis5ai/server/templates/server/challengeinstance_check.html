@@ -24,20 +24,21 @@
 
 <br/ >
 
-<h1>Intro</h1>
+<h1>Attempt validation</h1>
 <p>Welcome team {{ team.name }}!</p>
-<p>Your mission, should you choose to accept it, is the following one:</p>
+<p>Your API is being checked to validate if it meets the requirements for this challenge</p>
 <br/ >
 
-<h3>Description</h3>
+<h3>Checks</h3>
 <hr />
-<div>{{ chall.description|markdown|safe }}</div>
+<div>{{ attempt.details|markdown|safe }}</div>
+<br/ >
 
+<h3>Conclusion</h3>
 <hr />
-<h3>Validation</h3>
-<p>If you think your API is ready to be tested, click here!</p>
-<form action="{% url "chall-check" chall.id team.id %}" method="post">
-  {% csrf_token %}
-  <input type="submit" value="Validate solution">
-</form>
+{% if attempt.correct %}
+<div class="alert alert-success" role="alert">Congratulations!</div>
+{% else %}
+<div class="alert alert-danger" role="alert">Unfortunately, your response is not valid!</div>
+{% endif %}
 {% endblock %}

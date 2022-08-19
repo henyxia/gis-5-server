@@ -110,3 +110,9 @@ class ChallengeInstance(models.Model):
         default='s',
         help_text='Challenge status',
     )
+
+class ChallengeAttempt(models.Model):
+    challenge = models.ForeignKey('Challenge', on_delete=models.RESTRICT)
+    team = models.ForeignKey('Team', on_delete=models.RESTRICT)
+    attempt_at = models.DateTimeField(blank=True, default=datetime.now)
+    correct = models.BooleanField()

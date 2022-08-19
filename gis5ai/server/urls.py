@@ -11,4 +11,6 @@ urlpatterns = [
         path('challs/create/', views.ChallCreate.as_view(), name='chall-create'),
         path('challs/<int:chall_id>/team/<int:team_id>/start', views.ChallStart, name='chall-start'),
         path('challs/<int:chall_id>/team/<int:team_id>/work', views.ChallWork, name='chall-work'),
+        path('challs/<int:chall_id>/team/<int:team_id>/check', views.ChallCheck, name='chall-check'),
+        path('challs/<int:chall_id>/team/<int:team_id>/check/<int:attempt_id>', views.ChallCheckView, name='chall-check-view'),
     ]
