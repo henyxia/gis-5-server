@@ -50,7 +50,7 @@ def first_team(apps, schema_editor):
     Team = apps.get_model('server', 'Team')
     team = Team(
         name="Teachers",
-        member1="jwasilewski",
+        member1="jwasilew",
         member2="rex",
     )
     team.save()
