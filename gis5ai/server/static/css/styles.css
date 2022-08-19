@@ -8,3 +8,7 @@
     margin-top: 20px;
     padding: 0;
 }
+
+pre {
+    background-color: lightgray;
+}
