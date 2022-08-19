@@ -81,6 +81,7 @@ class Team(models.Model):
 class Challenge(models.Model):
     name = models.CharField(max_length=100, help_text='Challenge name')
     priority = models.PositiveIntegerField(help_text='Challenge priority')
+    minimal_version = models.CharField(max_length=12, help_text='Minimal API version required')
     validator = models.CharField(max_length=100, help_text='Name of the validator function')
     description = models.TextField(help_text='Challenge description')
 
