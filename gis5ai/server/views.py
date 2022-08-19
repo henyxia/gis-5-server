@@ -35,7 +35,6 @@ def ChallStart(request, chall_id, team_id):
     if request.method == 'POST':
         form = forms.Form(request.POST)
         if form.is_valid():
-            #inst = ChallengeInstance(challenge=form.cleaned_data['challenge'], team=form.cleaned_data['team'])
             inst = ChallengeInstance(challenge_id=chall_id, team_id=team_id)
             inst.save()
 
