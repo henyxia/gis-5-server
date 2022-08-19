@@ -99,6 +99,9 @@ class ChallengeInstance(models.Model):
     started_at = models.DateTimeField(blank=True, default=datetime.now)
     done_at = models.DateTimeField(null=True, blank=True)
 
+    def __str__(self):
+        return "Challenge %d of team %d" % (self.challenge.id, self.team.id)
+
     CHALLENGE_STATUS = (
         ('s', 'Started'),
         ('c', 'Completed'),
@@ -116,3 +119,6 @@ class ChallengeAttempt(models.Model):
     team = models.ForeignKey('Team', on_delete=models.RESTRICT)
     attempt_at = models.DateTimeField(blank=True, default=datetime.now)
     correct = models.BooleanField()
+
+    def __str__(self):
+        return "Challenge %d of team %d: %s" % (self.challenge.id, self.team.id, "Success" if self.correct else "Failed")
