@@ -8,6 +8,7 @@ class Team(models.Model):
     member1 = models.CharField(max_length=8, help_text='login8 of the first member', default='login8')
     member2 = models.CharField(max_length=8, help_text='login8 of the second member', blank=True)
     member3 = models.CharField(max_length=8, help_text='login8 of the third member', blank=True)
+    base_url = models.CharField(max_length=100, help_text='Base URL to check API against')
 
     def __str__(self):
         return self.name
@@ -119,6 +120,7 @@ class ChallengeAttempt(models.Model):
     team = models.ForeignKey('Team', on_delete=models.RESTRICT)
     attempt_at = models.DateTimeField(blank=True, default=datetime.now)
     correct = models.BooleanField()
+    details = models.JSONField()
 
     def __str__(self):
         return "Challenge %d of team %d: %s" % (self.challenge.id, self.team.id, "Success" if self.correct else "Failed")

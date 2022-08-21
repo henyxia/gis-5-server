@@ -31,7 +31,21 @@
 
 <h3>Checks</h3>
 <hr />
-<div>{{ attempt.details|markdown|safe }}</div>
+<div>
+  {% for detail in attempt.details %}
+  <h5>{{ detail.title }}
+    {% if detail.correct %}
+    <span class="badge bg-success">Corret</span>
+    {% else %}
+    <span class="badge bg-warning">Failed</span>
+    {% endif %}
+  </h5>
+  <big>Expected</big>
+  <pre>{{ detail.expected }}</pre>
+  <big>Got</big>
+  <pre>{{ detail.got }}</pre>
+  {% endfor %}
+</div>
 <br/ >
 
 <h3>Conclusion</h3>

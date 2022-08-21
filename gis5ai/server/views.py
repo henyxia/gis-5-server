@@ -74,9 +74,10 @@ def ChallCheck(request, chall_id, team_id):
     chall = Challenge.objects.get(pk=chall_id)
     validator_module = globals()[chall.validator]
     validator = getattr(validator_module, chall.validator)
-    attempt = validator(team_id)
+    team = Team.objects.get(pk=team_id)
+    attempt = validator(team.base_url)
 
-    att = ChallengeAttempt(challenge_id=chall_id, team_id=team_id, correct=attempt.correct)
+    att = ChallengeAttempt(challenge_id=chall_id, team_id=team_id, correct=attempt.correct, details=attempt.result_entries)
     att.save()
 
     if att.correct:
