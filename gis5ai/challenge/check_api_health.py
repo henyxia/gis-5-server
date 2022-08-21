@@ -31,5 +31,14 @@ def check_api_health(base_url):
     ):
         return res
 
+    response = r.json()
+    if not res.NewConditionalEntry(
+        title="Check status version",
+        condition=(response['version']=="0.0.1"),
+        expected="0.0.1",
+        got=response['version'],
+    ):
+        return res
+
     res.correct = True
     return res
