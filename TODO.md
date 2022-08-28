@@ -11,3 +11,5 @@ Here is the list of thing that can be done / improved.
 * home: remove chall creation
 * challenge/result: add boolean comparison method
 * challenge/1: test if test breaks with non JSON-compatible response
+* check: create spoiler-like views of the differents check and close them by default
+* check: retry current challenge button
