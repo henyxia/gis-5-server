@@ -103,7 +103,7 @@ class Challenge(models.Model):
 class ChallengeInstance(models.Model):
     challenge = models.ForeignKey('Challenge', on_delete=models.RESTRICT)
     team = models.ForeignKey('Team', on_delete=models.RESTRICT)
-    started_at = models.DateTimeField(blank=True, default=datetime.now)
+    started_at = models.DateTimeField(blank=True, default=timezone.now)
     done_at = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
@@ -124,7 +124,7 @@ class ChallengeInstance(models.Model):
 class ChallengeAttempt(models.Model):
     challenge = models.ForeignKey('Challenge', on_delete=models.RESTRICT)
     team = models.ForeignKey('Team', on_delete=models.RESTRICT)
-    attempt_at = models.DateTimeField(blank=True, default=datetime.now)
+    attempt_at = models.DateTimeField(blank=True, default=timezone.now)
     correct = models.BooleanField()
     details = models.JSONField()
 
