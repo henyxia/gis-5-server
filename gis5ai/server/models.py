@@ -1,7 +1,9 @@
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 
 from datetime import datetime
+import hashlib
 
 class Team(models.Model):
     name = models.CharField(max_length=100, help_text='Enter your team name')
@@ -78,6 +80,10 @@ class Team(models.Model):
             return None
 
         return lowest_chall
+
+    def get_secret(self):
+        team_id = "team_"+str(team.id)
+        return hashlib.sha256(team_id.encode('utf-8')).hexdigest()
 
 class Challenge(models.Model):
     name = models.CharField(max_length=100, help_text='Challenge name')

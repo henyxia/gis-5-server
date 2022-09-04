@@ -6,6 +6,6 @@ def check_api_secret(team):
     if not res.correct:
         return res
 
-    res = common. validate_challenge(team, res)
+    res = common.validate_challenge(team, res)
 
     return res

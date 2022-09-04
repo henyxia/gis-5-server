@@ -1,6 +1,5 @@
 from challenge.result import Result
 
-import hashlib
 import hmac
 import uuid
 import requests
@@ -52,8 +51,7 @@ def validate_challenge(team, res):
 
     # create a new UUID as challenge
     challenge = str(uuid.uuid4())
-    team_id = "team_"+str(team.id)
-    team_secret = hashlib.sha256(team_id.encode('utf-8')).hexdigest()
+    team_secret = team.get_secret()
     digest = hmac.new(
         team_secret.encode('utf-8'),
         challenge.encode('utf-8'),
@@ -97,5 +95,49 @@ def validate_challenge(team, res):
         got=response['digest'],
     ):
         return res
+
+    return res
+
+def request_post(team, res, url, data, validation):
+    base_url = team.base_url
+
+    # check if the API with the correct challenge
+    try:
+        r = requests.post(base_url+url,
+            json=data,
+        )
+        res.NewEntry(
+            title=url+" - Request API",
+            correct=True,
+            expected="Success",
+            got="Success",
+        )
+    except requests.exceptions.RequestException as e:
+        res.NewEntry(
+            title=url+" - Request API",
+            correct=False,
+            expected="Success",
+            got=str(repr(e))
+        )
+        return res
+
+    if not res.NewConditionalEntry(
+        title=url+" - Check status code",
+        condition=(r.status_code == 200),
+        expected="200",
+        got="%d"%(r.status_code),
+    ):
+        pprint(vars(res))
+        return res
+
+    response = r.json()
+    for val in validation:
+        if not res.NewConditionalEntry(
+            title=url+" - "+val['title'],
+            condition=bool(response[val['key']]==val['value']),
+            expected=str(val['value']),
+            got=str(response[val['key']]),
+        ):
+            return res
 
     return res

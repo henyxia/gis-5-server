@@ -15,6 +15,7 @@ class Result:
             "expected": expected,
             "got": got,
         })
+        self.correct=correct
 
     def NewConditionalEntry(self, title, condition, expected, got):
         self.NewEntry(
