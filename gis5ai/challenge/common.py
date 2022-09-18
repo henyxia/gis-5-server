@@ -127,7 +127,6 @@ def request_post(team, res, url, data, validation):
         expected="200",
         got="%d"%(r.status_code),
     ):
-        pprint(vars(res))
         return res
 
     response = r.json()
