@@ -182,3 +182,43 @@ def algo_common_class_score(team, version, url, classifier):
     )
 
     return res
+
+def algo_common_class_precision(team, version, url, classifier):
+    res, r = check_api_version(team, version)
+    if not res.correct:
+        return res
+
+    dataset = make_multilabel_classification(n_features=2, n_classes=1)
+    classifier.fit(dataset[0], dataset[1])
+
+    test_value = [[1.12, 1.69]]
+    correct_class = classifier.predict(test_value)
+    precisions = classifier.predict_proba(test_value)
+
+    print(correct_class[0])
+    print(precisions[0][correct_class[0]])
+
+    res = request_post(
+        res=res,
+        team=team,
+        url=url,
+        data=dict(
+            X=dataset[0].tolist(),
+            Y=dataset[1].tolist(),
+            test_value=test_value,
+        ),
+        validation=[
+            dict(
+                title="Correct class",
+                key="predicted_class",
+                value=correct_class[0],
+            ),
+            dict(
+                title="Class precision",
+                key="precision",
+                value=precisions[0][correct_class[0]],
+            ),
+        ],
+    )
+
+    return res

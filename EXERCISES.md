@@ -12,7 +12,7 @@
 * [x] Decision tree
 * [x] Random forest
 * [x] SVM kernel
-* [ ] Neural network
+* [x] Neural network
 
 ## Basic regressions
 
