@@ -3,4 +3,5 @@ __all__ = [
     "check_api_secret",
     "algo_knn_class",
     "algo_linear_class",
+    "algo_decision_tree_class",
 ]

@@ -8,8 +8,8 @@
 ## Basic classification
 
 * [x] KNN
-* [ ] Linear
-* [ ] Decision tree
+* [x] Linear
+* [x] Decision tree
 * [ ] Random forest
 * [ ] SVM kernel
 * [ ] Neural network
