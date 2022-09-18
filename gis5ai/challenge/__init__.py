@@ -4,4 +4,5 @@ __all__ = [
     "algo_knn_class",
     "algo_linear_class",
     "algo_decision_tree_class",
+    "algo_random_forest_class",
 ]

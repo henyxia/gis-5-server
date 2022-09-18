@@ -10,7 +10,7 @@
 * [x] KNN
 * [x] Linear
 * [x] Decision tree
-* [ ] Random forest
+* [x] Random forest
 * [ ] SVM kernel
 * [ ] Neural network
 
