@@ -5,4 +5,5 @@ __all__ = [
     "algo_linear_class",
     "algo_decision_tree_class",
     "algo_random_forest_class",
+    "algo_linear_svc",
 ]

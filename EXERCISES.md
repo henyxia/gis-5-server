@@ -11,7 +11,7 @@
 * [x] Linear
 * [x] Decision tree
 * [x] Random forest
-* [ ] SVM kernel
+* [x] SVM kernel
 * [ ] Neural network
 
 ## Basic regressions
