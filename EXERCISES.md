@@ -16,7 +16,7 @@
 
 ## Basic regressions
 
-* [ ] KNN
+* [x] KNN
 * [ ] Linear
 * [ ] Decision tree
 * [ ] Neural network
