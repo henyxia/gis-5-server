@@ -13,4 +13,5 @@ __all__ = [
     "algo_knn_reg",
     "algo_linear_reg",
     "algo_decision_tree_reg",
+    "algo_mlp_reg",
 ]
