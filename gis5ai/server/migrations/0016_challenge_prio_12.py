@@ -16,7 +16,7 @@ The linear classificator is done, well played!
 
 Let's try the implementing the decision tree now.
 
-Using the default settings and the same payload as before, create an endpoint on `/algo/linear/class`.
+Using the default settings and the same payload as before, create an endpoint on `/algo/decision-tree/class`.
 
 ## Goal
 

@@ -18,7 +18,7 @@
 
 * [x] KNN
 * [x] Linear
-* [ ] Decision tree
+* [x] Decision tree
 * [ ] Neural network
 
 ## Preparation

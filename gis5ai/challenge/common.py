@@ -235,7 +235,7 @@ def algo_common_reg_score(team, version, url, classifier):
     predicted_value = classifier.predict(test_value)
     score = classifier.score(dataset[0], dataset[1])
 
-    print(predicted_value[0][0])
+    print(predicted_value[0])
     print(score)
 
     res = request_post(
@@ -251,7 +251,7 @@ def algo_common_reg_score(team, version, url, classifier):
             dict(
                 title="Predicted value",
                 key="predicted_value",
-                value=predicted_value[0][0],
+                value=predicted_value[0],
             ),
             dict(
                 title="Class score",

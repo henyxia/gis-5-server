@@ -12,4 +12,5 @@ __all__ = [
     # intro regression
     "algo_knn_reg",
     "algo_linear_reg",
+    "algo_decision_tree_reg",
 ]

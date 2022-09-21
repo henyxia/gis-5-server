@@ -16,7 +16,7 @@ The decision tree classificator is done, well played!
 As you might have seen, the decision tree is sometimes imprecise.
 To improve its result, let's now focus on the random forest classificator.
 
-Using almost all default settings and the same payload as before, create an endpoint on `/algo/linear/class`.
+Using almost all default settings and the same payload as before, create an endpoint on `/algo/random-forest/class`.
 The particuliar thing to note is that you will use your number as `random_state`.
 
 ## Goal
