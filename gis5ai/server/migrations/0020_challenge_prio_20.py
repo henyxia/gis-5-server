@@ -24,10 +24,10 @@ The endpoint to create is `/algo/knn/regressor`.
 
 ## Goal
 
-You will have to return the predicted class and its score.
+You will have to return the predicted value and its score.
 ```
 {
-  "predicted_class": 0,
+  "predicted_value": 0.2,
   "score": 0.8
 }
 ```

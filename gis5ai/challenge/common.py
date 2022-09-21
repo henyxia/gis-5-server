@@ -262,3 +262,43 @@ def algo_common_reg_score(team, version, url, classifier):
     )
 
     return res
+
+def algo_common_reg_precision(team, version, url, classifier):
+    res, r = check_api_version(team, version)
+    if not res.correct:
+        return res
+
+    dataset = make_multilabel_classification(n_features=2, n_classes=1)
+    classifier.fit(dataset[0], dataset[1])
+
+    test_value = [[1.12, 1.69]]
+    predicted_value = classifier.predict(test_value)
+    precisions = classifier.predict_proba(test_value)
+
+    print(predicted_value[0])
+    print(precisions[0][0])
+
+    res = request_post(
+        res=res,
+        team=team,
+        url=url,
+        data=dict(
+            X=dataset[0].tolist(),
+            Y=dataset[1].tolist(),
+            test_value=test_value,
+        ),
+        validation=[
+            dict(
+                title="Predicted value",
+                key="predicted_value",
+                value=predicted_value[0],
+            ),
+            dict(
+                title="Value precision",
+                key="precision",
+                value=precisions[0][0],
+            ),
+        ],
+    )
+
+    return res

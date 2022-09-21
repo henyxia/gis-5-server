@@ -11,4 +11,5 @@ __all__ = [
     "algo_mlp_class",
     # intro regression
     "algo_knn_reg",
+    "algo_linear_reg",
 ]
