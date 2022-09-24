@@ -23,7 +23,7 @@
 
 ## Preparation
 
-* [ ] One-hot
+* [x] One-hot
 
 ## A worker API
 * [ ] /train + save + push S3
