@@ -16,4 +16,6 @@ __all__ = [
     "algo_mlp_reg",
     # intro preparation
     "algo_one_hot",
+    # lpb
+    "lpb_delivery",
 ]

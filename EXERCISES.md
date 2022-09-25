@@ -25,15 +25,11 @@
 
 * [x] One-hot
 
-## A worker API
-* [ ] /train + save + push S3
-
 ## A real use case
 
-### Postal code prep
+## Send a package
 
-* [ ] Read all CSV and create a list of postal code/city files (split by department)
-* [ ] Clip the postal code
+* [x] Choose the best provider given some experience
 
 ### Postal code
 
@@ -46,10 +42,6 @@
 
 * [ ] Read all CSV and create list of addresses by city code (split by department/city code)
 * [ ] Read address and check against the city CSV
-
-## Now send this package
-
-* [ ] Choose the best provider given some experience
 
 # Notes
 

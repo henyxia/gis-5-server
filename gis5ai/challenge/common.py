@@ -143,6 +143,38 @@ def request_post(team, res, url, data, validation):
 
     return res
 
+def request_post_quiet(team, res, url, data, validation):
+    base_url = team.base_url
+
+    # check if the API with the correct challenge
+    try:
+        r = requests.post(base_url+url,
+            json=data,
+        )
+    except requests.exceptions.RequestException as e:
+        res.NewEntry(
+            title=url+" - Request API",
+            correct=False,
+            expected="Success",
+            got=str(repr(e))
+        )
+        return res
+
+    if r.status_code != 200:
+        res.NewEntry(
+            title=url+" - Check status code",
+            correct=False,
+            expected="200",
+            got="%d"%(r.status_code),
+        )
+
+    response = r.json()
+    for val in validation:
+        if response[val['key']] != val['value']:
+            return False
+
+    return True
+
 def algo_common_class_score(team, version, url, classifier):
     res, r = check_api_version(team, version)
     if not res.correct:
